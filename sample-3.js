@@ -1,4 +1,3 @@
-//NEW CODE FOR DEEPLINKS HTML GENERATION
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu("Generate A+")
@@ -9,7 +8,6 @@ function onOpen() {
 }
 function generateHTML() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  // Prompt the user to select the destination cell
   var cellAddress = Browser.inputBox(
     "Select Destination Cell",
     "Enter the cell address (e.g., A1):",
@@ -18,7 +16,6 @@ function generateHTML() {
   if (cellAddress && sheet.getRange(cellAddress)) {
     var selection = sheet.getActiveRangeList();
     var ranges = selection.getRanges();
-
     if (ranges.length > 0) {
       var result = `<style type='text/css'>
                       .main-container {
@@ -34,7 +31,6 @@ function generateHTML() {
                       }
                       </style>
                       <div class='main-container'>`;
-
       for (var i = 0; i < ranges.length; i++) {
         var values = ranges[i].getValues();
         for (var j = 0; j < values.length; j++) {
@@ -45,14 +41,13 @@ function generateHTML() {
         }
       }
       result += `</div>`;
-      // Set the result in the specified destination cell
       sheet.getRange(cellAddress).setValue(result);
+      Browser.msgBox(result, Browser.Buttons.OK_CANCEL);
     }
   }
 }
 function generateHTMLNykaa() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  // Prompt the user to select the destination cell
   var cellAddress = Browser.inputBox(
     "Select Destination Cell",
     "Enter the cell address (e.g., A1):",
@@ -84,15 +79,14 @@ function generateHTMLNykaa() {
         }
       }
       result += `</div>`;
-      // Set the result in the specified destination cell
       sheet.getRange(cellAddress).setValue(result);
+      Browser.msgBox(result, Browser.Buttons.OK_CANCEL);
     }
   }
 }
 
 function generateHTMLwithDeeplink() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  // Prompt the user to select the destination cell
   var cellAddress = Browser.inputBox(
     "Select Destination Cell",
     "Enter the cell address (e.g., A1):",
@@ -117,7 +111,6 @@ function generateHTMLwithDeeplink() {
                       }
                       </style>
                       <div class='main-container'>`;
-
       for (var i = 0; i < ranges.length; i++) {
         var values = ranges[i].getValues();
         console.log(values);
@@ -140,8 +133,8 @@ function generateHTMLwithDeeplink() {
         }
       }
       result += `</div>`;
-      // Set the result in the specified destination cell
       sheet.getRange(cellAddress).setValue(result);
+      Browser.msgBox(result, Browser.Buttons.OK_CANCEL);
     }
   }
 }
